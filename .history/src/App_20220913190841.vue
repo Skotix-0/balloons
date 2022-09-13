@@ -2,7 +2,6 @@
   <Header-component />
   <nav>
     <router-link to="/">Главная</router-link>
-    <router-link to="/favorable-offers">Выгодные предложения</router-link>
     <router-link to="/contact">Контактная информация</router-link>
   </nav>
 
@@ -27,7 +26,6 @@
 nav {
   width: 100%;
   max-width: 1200px;
-  height: 30px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -39,7 +37,6 @@ nav a {
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
-  transition: all .2s ease-in;
 }
 
 nav a.router-link-exact-active {

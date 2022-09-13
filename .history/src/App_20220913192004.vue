@@ -39,7 +39,7 @@ nav a {
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
-  transition: all .2s ease-in;
+  transition: all .3s ease-out;
 }
 
 nav a.router-link-exact-active {

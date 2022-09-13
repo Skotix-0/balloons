@@ -27,7 +27,6 @@
 nav {
   width: 100%;
   max-width: 1200px;
-  height: 30px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -39,7 +38,7 @@ nav a {
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
-  transition: all .2s ease-in;
+  transition: .4s ease;
 }
 
 nav a.router-link-exact-active {
