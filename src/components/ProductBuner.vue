@@ -1,16 +1,22 @@
 <template>
   <div class="baner">
-    <img src="https://vozdushnoe-buro.ru/wp-content/uploads/2020/01/1111111-1.png" alt="">
+    <img :src="category.imgUrl" alt="">
     <div class="shadow_area"></div>
     <div class="baner_text-content">
-        <strong>Выгодные предложения</strong>
+        <strong>{{category.title}}</strong>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'product-buner'
+    name: 'product-buner',
+    props: {
+        category:{
+            type: Object,
+            required: true,
+        }
+    }
 }
 </script>
 
@@ -25,6 +31,7 @@ export default {
     justify-content: center;
     align-items: center;
     margin: 10px;
+    break-after: auto;
 }
 
 .shadow_area{
@@ -61,6 +68,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px 30px;
 }
 
 </style>
