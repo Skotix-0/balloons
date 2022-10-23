@@ -1,30 +1,34 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import LatexBalloons from '../views/LatexBalloons.vue'
+import FoilBalloons from '../views/FoilBalloons.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/LatexBalloons',
+    name: 'LatexBalloons',
+    component: LatexBalloons
+  },
+  {
+    path: '/FoilBalloons',
+    name: 'FoilBalloons',
+    component: FoilBalloons
   },
   {
     path: '/contact',
     name: 'contact',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/ContactView.vue')
   },
   {
-    path: '/favorable-offers',
-    name: 'favorable-offers',
-    component: () => import( '../views/FavorableOffers.vue' )
-  }
+    path: '/product-card',
+    name: 'product-card',
+    component: () => import( '../views/ProductCard.vue' )
+  },
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 
+// history: createWebHistory(),
 export default router

@@ -1,0 +1,79 @@
+<template>
+  <template v-if="urlCategory === null && categorys !== null">
+    <div class="productList">
+      <product-buner
+        v-for="category in categorys"
+        :category="category"
+        :key="category.id"
+        navOpen="FoilBalloons"
+      />
+    </div>
+  </template>
+
+  <template v-else-if="urlCategory !== null">
+    <product-list v-for="(val, key) in products" :key="key" :products="val" />
+    <loader v-if="!products" />
+  </template>
+
+  <template v-else>
+    <loader />
+  </template>
+
+  <scroll-to-top />
+</template>
+  
+  <script>
+export default {
+  name: "FoilBalloons",
+  data() {
+    return {
+      urlCategory: null,
+    };
+  },
+  methods: {},
+  created() {
+    let urlParams = new URLSearchParams(window.location.search);
+    if (!urlParams.has("categoryId")) {
+      this.urlCategory = null;
+      this.$store.dispatch("GET_CATEGORYS", 630);
+      this.$store.dispatch("CLEAR_PRODUCTS");
+    } else {
+      this.$store.dispatch("GET_PRODUCTS", {
+        categoryId: urlParams.get("categoryId"),
+        lastProduct: 0,
+      });
+      this.urlCategory = urlParams.get("categoryId");
+      document.documentElement.scrollIntoView(true);
+    }
+  },
+  computed: {
+    categorys() {
+      return this.$store.getters.GETTERS_FOIL_CATEGORYS;
+    },
+    products() {
+      return this.$store.getters.GETTERS_PRODUCTS;
+    },
+  },
+};
+</script>
+  
+  <style scoped lang="scss">
+.productList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.productList_title {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+}
+body {
+  min-height: 100vh;
+  padding: 0px;
+  margin: 0px;
+}
+</style>
+  

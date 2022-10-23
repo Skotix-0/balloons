@@ -1,16 +1,51 @@
 <template>
   <Header-component />
-  <nav>
-    <router-link to="/">Главная</router-link>
-    <router-link to="/favorable-offers">Выгодные предложения</router-link>
+  <nav class="navigation-links">
+    <router-link to="/LatexBalloons">Латексные шары</router-link>
+    <router-link to="/FoilBalloons">Фольгированные шары</router-link>
     <router-link to="/contact">Контактная информация</router-link>
+    <router-link to="/product-card">Корзина ({{this.$store.getters.GETTERS_CARD.length}})</router-link>
   </nav>
 
-  <router-view/>
+  <router-view :key="$route.fullPath"></router-view>
 
 </template>
 
+<script>
+export default{
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.onScroll);
+  },
+  methods: {
+    onScroll(e) {
+      let windowTop = e.target.documentElement.scrollTop;
+      if(windowTop >= 50){
+        // Button at scroll to top
+        document.querySelector('.btn-up').classList.remove('btn-up_hide');
+        document.querySelector('.btn-up').classList.add('btn-up_show');
+        // Nav block to fixed
+        document.querySelector('.navigation-links').classList.add('navigation-links__fixed');
+      } else {
+        // Button at scroll to top
+        document.querySelector('.btn-up').classList.remove('btn-up_show');
+        document.querySelector('.btn-up').classList.add('btn-up_hide');
+        // Nav block to fixed
+        document.querySelector('.navigation-links').classList.remove('navigation-links__fixed');
+      }
+    }
+  }
+}
+</script>
+
 <style>
+
+html, body{
+  scroll-behavior: smooth;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,7 +59,7 @@
   align-items: center;
 }
 
-nav {
+.navigation-links {
   width: 100%;
   max-width: 1200px;
   height: 30px;
@@ -35,14 +70,21 @@ nav {
   border-bottom: 1px solid #eee;
 }
 
-nav a {
+.navigation-links__fixed{
+  position: fixed;
+  top: 0px;
+  background: white;
+  z-index: 99999;
+}
+
+.navigation-links a {
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
   transition: all .2s ease-in;
 }
 
-nav a.router-link-exact-active {
+.navigation-links a.router-link-exact-active {
   color: #dd3333 !important;
   text-decoration: none;
   display: inline-block;
