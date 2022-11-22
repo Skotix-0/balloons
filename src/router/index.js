@@ -14,9 +14,9 @@ const routes = [
     component: FoilBalloons
   },
   {
-    path: '/contact',
-    name: 'contact',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ContactView.vue')
+    path: '/delivery',
+    name: 'delivery',
+    component: () => import(/* webpackChunkName: "about" */ '../views/DeliveryView.vue')
   },
   {
     path: '/product-card',

@@ -16,7 +16,7 @@ export default {
     }
   },
   created(){
-    console.log( this.$store.getters.GETTERS_CARD );
+    this.$store.getters.GETTERS_CARD;
   }
 };
 </script>

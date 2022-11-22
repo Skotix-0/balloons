@@ -49,9 +49,11 @@ export default {
     },
   },
   methods: {
-    async addToCard(bp_id) {
+    addToCard(bp_id) {
       if( !this.$store.getters.GETTERS_CARD.includes(bp_id) ){
-        let {data} = await axios.get(`http://shariki.gg?func=addPositionInCard&position=${bp_id}&token=${localStorage.getItem('user_token')}`);
+        let {data} = axios.get(`http://shariki.gg?func=addPositionInCard&position=${bp_id}&token=${localStorage.getItem('user_token')}`);
+        console.log(data);
+        return;
         if(data['status']){
           this.$store.dispatch("ADD_TO_CARD", bp_id);
         }else{

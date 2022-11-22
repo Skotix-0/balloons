@@ -49,14 +49,10 @@ export default {
     },
   },
   methods: {
-    async addToCard(bp_id) {
+    addToCard(bp_id) {
       if( !this.$store.getters.GETTERS_CARD.includes(bp_id) ){
-        let {data} = await axios.get(`http://shariki.gg?func=addPositionInCard&position=${bp_id}&token=${localStorage.getItem('user_token')}`);
-        if(data['status']){
-          this.$store.dispatch("ADD_TO_CARD", bp_id);
-        }else{
-          alert('Произошла ошибка ! Позиция не была добавлена !');
-        }
+        this.$store.dispatch("ADD_TO_CARD", bp_id);
+        axios.get(`http://shariki.gg?func=addPositionInCard&position=${bp_id}&token=${localStorage.getItem('user_token')}`);
       }
     },
   },

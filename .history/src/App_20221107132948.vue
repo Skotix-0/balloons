@@ -8,7 +8,7 @@
   </nav>
 
   <router-view :key="$route.fullPath"></router-view>
-  <scroll-to-top />
+
 </template>
 
 <script>

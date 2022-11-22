@@ -25,6 +25,8 @@
   <template v-else>
     <loader />
   </template>
+  
+  <scroll-to-top />
 </template>
 
 <script>

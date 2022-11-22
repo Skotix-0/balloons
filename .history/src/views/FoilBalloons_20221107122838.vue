@@ -5,31 +5,26 @@
         v-for="category in categorys"
         :category="category"
         :key="category.id"
-        navOpen = 'LatexBalloons'
+        navOpen="FoilBalloons"
       />
     </div>
   </template>
 
   <template v-else-if="urlCategory !== null">
-    <product-list 
-      v-for="(val, key) in products" 
-      :key="key" 
-      :products="val" 
-    />
+    <product-list v-for="(val, key) in products" :key="key" :products="val" />
     <loader v-if="!products" />
-    <!-- <template v-else-if="products === null" >
-      <h1>Что-то пошло не так, попробуйте позже!</h1>
-    </template> -->
   </template>
 
   <template v-else>
     <loader />
   </template>
-</template>
 
-<script>
+  <scroll-to-top />
+</template>
+  
+  <script>
 export default {
-  name: "LatexBalloons",
+  name: "FoilBalloons",
   data() {
     return {
       urlCategory: null,
@@ -40,7 +35,7 @@ export default {
     let urlParams = new URLSearchParams(window.location.search);
     if (!urlParams.has("categoryId")) {
       this.urlCategory = null;
-      this.$store.dispatch("GET_CATEGORYS", 518);
+      this.$store.dispatch("GET_CATEGORYS", 630);
       this.$store.dispatch("CLEAR_PRODUCTS");
     } else {
       this.$store.dispatch("GET_PRODUCTS", {
@@ -53,7 +48,7 @@ export default {
   },
   computed: {
     categorys() {
-      return this.$store.getters.GETTERS_LATEX_CATEGORYS;
+      return this.$store.getters.GETTERS_FOIL_CATEGORYS;
     },
     products() {
       return this.$store.getters.GETTERS_PRODUCTS;
@@ -61,8 +56,8 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
+  
+  <style scoped lang="scss">
 .productList {
   display: flex;
   flex-wrap: wrap;
@@ -81,3 +76,4 @@ body {
   margin: 0px;
 }
 </style>
+  
